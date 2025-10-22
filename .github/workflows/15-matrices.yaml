@@ -28,7 +28,15 @@ jobs:
         size: [ small, large ]
         include:
           - color: red
+            opacity: 75
+          - size: circle
+            opacity: 100
+          - color: red
             shape: triangle
+          - opacity: 50
+        exclude:
+          - color: green
+            shape: circle
     steps:
       - name: Dummy step
         run: echo "${{ matrix.color }}-${{ matrix.shape }}-${{ matrix.size }}"
