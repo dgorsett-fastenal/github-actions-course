@@ -1,5 +1,5 @@
 import { getBooleanInput, getInput, info, setFailed, setSecret } from '@actions/core';
-const exec = require('@actions/exec');
+import { exec, getExecOutput } from '@actions/exec';
 
 const validateBranchName = ({ branchName }) => /^[a-zA-Z0-9_\-\.\/]+$/.test(branchName);
 const validateDirectoryName = ({ dirName }) => /^[a-zA-Z0-9_\-\/]+$/.test(dirName);
@@ -32,11 +32,11 @@ async function run() {
   info(`[js-dependency-update] : target branch is ${targetBranch}`);
   info(`[js-dependency-update] : working directory is ${workingDir}`);
 
-  await exec.exec('npm update', [], {
+  await exec('npm update', [], {
     cwd: workingDir
   });
 
-  const gitStatus = await exec.getExecOutput('git status -s package*.json', [], {
+  const gitStatus = await getExecOutput('git status -s package*.json', [], {
     cwd: workingDir
   });
 
