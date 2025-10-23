@@ -12,6 +12,10 @@ on:
       working-dir:
         type: string
         default: 17-custom-actions/react-app
+# Permissions for the auto-generated secrets.GITHUB_TOKEN
+permissions:
+  contents: write
+  pull-requests: write
 jobs:
   dependency-update:
     runs-on: ubuntu-latest
@@ -23,3 +27,4 @@ jobs:
           base-branch: ${{ inputs.base-branch }}
           target-branch: ${{ inputs.target-branch }}
           working-directory: ${{ inputs.working-dir }}
+          gh-token: ${{ secrets.GITHUB_TOKEN }}
