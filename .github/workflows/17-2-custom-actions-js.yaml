@@ -1,17 +1,20 @@
 name: 17 - 2 Custom Actions - JS
-run-name: 17 - 2 Custom Actions - JS | BB - ${{ inputs.base-branch }} TB - ${{ inputs.target-branch }} WD - ${{ inputs.working-dir }}
+run-name: 17 - 2 Custom Actions - JS | BB - ${{ inputs.base-branch }} HB - ${{ inputs.head-branch }} WD - ${{ inputs.working-dir }}
 on:
   workflow_dispatch:
     inputs:
       base-branch:
         type: string
         default: main
-      target-branch:
+      head-branch:
         type: string
         default: update-depenendencies
       working-dir:
         type: string
         default: 17-custom-actions/react-app
+      debug:
+        type: boolean
+        default: false
 # Permissions for the auto-generated secrets.GITHUB_TOKEN
 permissions:
   contents: write
@@ -25,6 +28,7 @@ jobs:
         uses: ./.github/actions/js-dependency-update
         with:
           base-branch: ${{ inputs.base-branch }}
-          target-branch: ${{ inputs.target-branch }}
+          head-branch: ${{ inputs.head-branch }}
           working-directory: ${{ inputs.working-dir }}
           gh-token: ${{ secrets.GITHUB_TOKEN }}
+          debug: ${{ inputs.debug }}
