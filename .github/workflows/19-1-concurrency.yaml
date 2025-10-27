@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Ping URL
-        uses: .github/actions/docker-ping-url
+        uses: ./.github/actions/docker-ping-url
         with:
           url: https://www.somesite-ouyyfdclhjbi.com
           max_trials: 20
