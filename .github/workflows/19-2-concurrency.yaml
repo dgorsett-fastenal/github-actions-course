@@ -5,7 +5,7 @@ jobs:
   ping-with-concurrency:
     runs-on: ubuntu-latest
     concurrency:
-      group: $GITHUB_WORKFLOW-$GITHUB_REF
+      group: ${{ github.workflow }}-${{ github.ref }}
     steps:
       - uses: actions/checkout@v4
       - name: Ping URL
